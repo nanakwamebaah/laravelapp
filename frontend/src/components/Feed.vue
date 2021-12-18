@@ -70,25 +70,24 @@
             
 
             </div>
-
-            <div class="post-container">
-                <div class="post-row">
+             <div v-for="feed in feeds" :key= "feed.id" class="post-container">
+                <div  class="post-row" >
                     <div class="user-profile">
                         <img src="css/images/anime1.jpeg">
                         <div>
-                            <p>Manga Forum</p>
-                            <span>August 24 2021, 16:40pm</span>
+                            <p>{{feed.username}}</p>
+                            <span>{{feed.created_at}}</span>
                         </div>
                     </div>
                     <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                 </div>
-                <p class="post-info">join our discord channel for more <span>@Anime</span><a href="#">#GoAnime</a> </p>
-                <img src="css/images/anime7.jpeg" class="post-img">
+                <p class="post-info">{{feed.message}}</p>
+                <!--<img src="css/images/anime7.jpeg" class="post-img">-->
                 <div class="post-row">
                     <div class="activity-icons">
-                        <div><img src="../images/like-blue.png">700</div>
+                        <div><img src="../images/like-blue.png">{{feed.like_count}}</div>
                         <div><img src="../images/comments.png">400</div>
-                        <div><img src="../images/share.png">400</div>
+                        <div><img src="../images/share.png">{{feed.share_count}}</div>
                     </div>
                     <div class="post-profile-icon">
                         <img src="css/images/anime1.jpeg"><i class="fas fa-caret-down"></i>
@@ -106,14 +105,14 @@
 
 
 export default({
-    /*data() {
-        counter: 0;
+    data(){
+      return{
+          feeds:null,
+      }
     },
-    methods: {
-        addc(){
-
-        }
-    }*/
+    created(){
+      this.$http.get('/posts/').then(response=>this.feeds=response.data)
+    }
    
 })
 </script>

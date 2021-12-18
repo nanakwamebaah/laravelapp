@@ -55,15 +55,35 @@
                 </div>
                 <p>Rolex W</p>
             </div>
-
-            <div class="online-list">
-                <div class="online">
-                    <img src="css/images/anime6.jpeg">
-                </div>
-                <p>Kelvin</p>
+           <div class="sidebar-title">
+                <h4>offline</h4>
+                <a href="#">Hide Chat</a>
             </div>
+            <div v-for="friend in friends" :key= "friend.id" class="online-list">
+                <!--<div class="online">
+                    <img src="css/images/anime6.jpeg">
+                </div>-->
+                
+                <p>{{friend.username}}</p>
+            </div>
+            
 
 
     </section>
 
 </template>
+<script>
+export default({
+    data(){
+    
+      return{
+          friends:null,
+      }
+    },
+    created(){
+      const id = this.$route.params.id
+      this.$http.get('/fuser/' ).then(response=>this.friends=response.data)
+    }
+   
+})
+</script>

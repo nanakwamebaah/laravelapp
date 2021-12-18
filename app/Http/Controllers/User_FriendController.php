@@ -67,7 +67,6 @@ class User_FriendController extends Controller
             foreach($friends as $friend){
                 array_push($arr,$friend->targetId);
             }
-            //return $friends;
             $user = array();
             foreach($arr as $id){
                 array_push($user,Fusers::find($id)->username);
@@ -75,5 +74,9 @@ class User_FriendController extends Controller
             return $user;
         }
         
+    }
+    public function showall()
+    {
+        return User_Friend::all();
     }
 }

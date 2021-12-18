@@ -5,10 +5,10 @@
     <h1>Login Here</h1>
     <form>
       <p> Username </p>
-      <input type="text" name="" placeholder="Enter Username" >
+      <input type="text" v-model="name" placeholder="Enter Username" >
       <p> Password </p>
-      <input type="password" name="" placeholder="Enter Password"><br>
-      <input type="submit" name="" value="Login"><br>
+      <input type="password" v-model="password" placeholder="Enter Password"><br>
+      <input type="submit" @click="loginUser"><br>
       <a href="#">Lost your password?</a><br>
       <a href="#">Don't have an account?</a>
     </form>
@@ -104,6 +104,14 @@ h1{
 //object
 export default {
   name: 'Login',
- 
+  data(){
+    return {
+       name: '',
+       password: '',
+    }
+  },
+  created(){
+    //this.http.post('/login')
+  }
 }
 </script>

@@ -50,7 +50,9 @@ class FusersController extends Controller
         if($email != null){
             $pass2 = $credentials['password'];
             $password = DB::table('fusers')->where(['email' => $credentials['email']])->value('password');
+            $id = DB::table('fusers')->where(['email' => $credentials['email']])->value('id');
             if (Hash::check($pass2, $password,[])){
+                //$user = Fusers::find($id)->update('active'=>);
                 return response()->json(['message'=>'Login Succesfull'], 201);
             }else{
                 return response()->json(['message'=>'Invalid password']);
@@ -77,18 +79,13 @@ class FusersController extends Controller
         return Fusers::destroy($id);
     }
 
-   /* public function getUserPost(){
-        $posts = User_Post::find(6)->fusers;
-        //$posts = Fusers::find(1)->user_post;
-        //$arr = array();
-        //return $posts;
-          //$post = User_Post::find(1);
-          return User_Post::find(1)->fusers->firstname;
-        /*foreach ($posts as $post){
-            $arr = $post;
-        }
-        return $arr;*/
-        
-    //} 
+    public function logout($id){
+
+    }
+    
+   public function showall(){
+       $user = DB::table('fusers')->select('username')->get();
+       return $user;
+   }
 
 }

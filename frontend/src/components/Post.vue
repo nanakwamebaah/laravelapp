@@ -90,7 +90,15 @@
 <script>
 export default {
   name: 'Post',
-  
+  data:{
+      post:{},
+      posts: [{
+          id:1,
+          name:'obeng',
+          image:["../images/profile-pic1.jpg"],
+          description:'my namme is ...',
+      }],
+  },
 }
 </script>
 

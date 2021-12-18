@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 Use App\Models\Fusers;
 Use App\Models\User_Post;
 Use App\Models\User_Friend;
@@ -69,4 +70,9 @@ class User_PostController extends Controller
         return $posts;
           
     }
+    public function showall(){
+       $post = DB::table('user__posts')->join('fusers', 'user__posts.fuserId', '=', 'fusers.id')->select('user__posts.*','fusers.username')->get();
+       return $post;
+    }
+    
 }
